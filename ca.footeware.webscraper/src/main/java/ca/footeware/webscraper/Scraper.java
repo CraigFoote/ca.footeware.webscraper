@@ -34,16 +34,10 @@ public class Scraper {
 
 		Map<String, String> fields = new HashMap<String, String>();
 
-		Element gearList = doc.getElementById("gearList");
-		Elements gearItems = gearList.getElementsByTag("li");
-
-		for (Element gearItem : gearItems) {
-			Elements links = gearItem.getElementsByTag("a");
-			for (Element link : links) {
-				String name = link.text();
-				String href = link.attr("href");
-				fields.put(name, href);
-			}
+		Elements links = doc.select("ul#gearList > li > a");
+		
+		for (Element link : links) {
+			fields.put(link.text(), link.attr("href"));
 		}
 
 		Gson gson = new GsonBuilder().create();
