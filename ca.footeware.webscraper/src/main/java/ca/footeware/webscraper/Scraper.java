@@ -22,7 +22,7 @@ import com.google.gson.GsonBuilder;
 public class Scraper {
 
 	/**
-	 * @param args
+	 * @param args {@link String} array
 	 */
 	public static void main(String[] args) {
 		Document doc = null;
@@ -40,7 +40,7 @@ public class Scraper {
 			fields.put(link.text(), link.attr("href"));
 		}
 
-		Gson gson = new GsonBuilder().create();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String json = gson.toJson(fields);
 
 		System.out.println(json);
