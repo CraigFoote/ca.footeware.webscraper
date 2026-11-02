@@ -27,14 +27,14 @@ public class Scraper {
 	public static void main(String[] args) {
 		Document doc = null;
 		try {
-			doc = Jsoup.connect("http://footeware.ca/gear").get();
+			doc = Jsoup.connect("https://footeware.ca/gear").get();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
 		Map<String, String> fields = new HashMap<String, String>();
 
-		Elements links = doc.select("ul#gearList > li > a");
+		Elements links = doc.select("a");
 		
 		for (Element link : links) {
 			fields.put(link.text(), link.attr("href"));
